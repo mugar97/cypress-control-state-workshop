@@ -24,34 +24,3 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { app } from "../helpers/config";
-import { base64, guid } from "../helpers/utils";
-
-Cypress.Commands.add('setVal', { prevSubject: 'element' }, (subject, text) => {
-    cy.wrap(subject).then(($elem) => {
-        $elem.val(text);
-    });
-});
-
-// To submit login form using App Actions
-Cypress.Commands.add('loginJS', ({ username, password } = {}) => {
-    username && cy.get('#loginusername').setVal(username);
-    password && cy.get('#loginpassword').setVal(password);
-    cy.window().invoke('logIn');
-});
-
-// Login via API
-Cypress.Commands.add('loginAPI', () => {
-    cy.fixture('user').then(({username, password})=>{
-        cy.request({
-            ...app.api.login,
-            body: {
-                username: username,
-                password: base64(password)
-            }
-        }).then((response) => {
-            const token = response.body.replace("Auth_token: ", "");
-            cy.setCookie('tokenp_', token);
-        });
-    });
-});
