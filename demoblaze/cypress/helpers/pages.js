@@ -27,24 +27,3 @@ export const navigationBar = {
         return cy.get('#nameofuser');
     }
 };
-
-export const productPage = {
-    get infoCard() {
-        return cy.get('#tbodyid');
-    },
-    get title() {
-        return cy.get('.name');
-    },
-    get priceContainer() {
-        return cy.get('.price-container');
-    },
-    get descriptionContainer() {
-        return cy.get('#more-information');
-    },
-    get addToCartButton() {
-        return cy.get('a.btn');
-    },
-    get image() {
-        return cy.get('#imgp img');
-    },
-};

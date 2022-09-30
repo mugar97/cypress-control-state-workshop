@@ -83,22 +83,3 @@ Cypress.Commands.add('clearCart', () => {
     });
 });
 
-Cypress.Commands.add('getCart', () => {
-    cy.getCookie('tokenp_').then((cookie) => {
-        cy.request({
-            ...app.api.viewCart,
-            body: {
-                cookie: cookie.value,
-                flag: true
-            }
-        });
-    });
-});
-
-Cypress.Commands.add('getProductsOnCart', () => {
-    cy.getCart().then(({ body }) => {
-        cy.wrap(body.Items.map((item) => item.prod_id));
-    });
-});
-
-
