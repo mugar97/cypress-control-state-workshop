@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "cy:open":"npx cypress open --browser electron --e2e"
+  },
+  "devDependencies": {
+    "cypress": "^10.9.0"
+  }
+}
